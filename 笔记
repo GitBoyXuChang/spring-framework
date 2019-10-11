@@ -1,0 +1,52 @@
+下载:
+git clone https://github.com/spring-projects/spring-framework.git
+cd spring-framework/
+编译：
+gradlew :spring-oxm:compileTestJava
+
+直接导入idea
+
+Terminal中执行
+gradle objenesisRepackJar
+gradle cglibRepackJar
+会在Spring-framework\spring-core\build\libs生成缺失的jar
+
+
+
+
+
+
+
+registerBeanDefinition(String beanName, BeanDefinition beanDefinition)
+id   org.springframework.beans.factory.support.BeanDefinitionRegistry.registerBeanDefinition
+name  org.springframework.core.AliasRegistry.registerAlias
+
+
+BeanDefinitionReader 读取spring.xml  创建 BeanDefinition ，注册到 BeanDefinitionRegistry
+
+
+bean的生命周期
+创建 --- 初始化 ---销毁
+初始化 org.springframework.beans.factory.InitializingBean.afterPropertiesSet()
+销毁  org.springframework.beans.factory.DisposableBean.destroy()
+
+1.配置注解：@PostConstruct  @PreDestroy
+2.实现InitializingBean，DisposableBean接口
+3.@Bean(initMethod="init", destroyMethod="destory")
+
+org.springframework.beans.factory.config.BeanPostProcessor #bead的后置处理器，在bean初始化之前调用拦截,在bean初始化前后进行一些处理工作
+
+
+org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry
+
+
+
+
+Spring 事务相关：
+TransactionDefinition  //事物定义
+PlatformTransactionManager   //事物管理
+TransactionStatus  //事物运行时状态
+TransactionInterceptor  //事务拦截器
+
+
+

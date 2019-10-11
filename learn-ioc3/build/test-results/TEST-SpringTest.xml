@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="SpringTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-08-27T05:55:05" hostname="DESKTOP-67HUT5N" time="0.847">
+  <properties/>
+  <testcase name="test" classname="SpringTest" time="0.847"/>
+  <system-out><![CDATA[beanName:appConfig调用postProcessBeforeInstantiation
+beanName:appConfig调用postProcessAfterInstantiation
+beanName:appConfig调用postProcessBeforeInitialization
+beanName:appConfig调用postProcessAfterInitialization
+beanName:myFactoryBean调用postProcessBeforeInstantiation
+beanName:myFactoryBean调用postProcessAfterInstantiation
+beanName:myFactoryBean调用postProcessBeforeInitialization
+beanName:myFactoryBean调用postProcessAfterInitialization
+beanName:user调用postProcessBeforeInstantiation
+=====user====
+beanName:user调用postProcessAfterInstantiation
+beanName:user调用postProcessBeforeInitialization
+beanName:user调用postProcessAfterInitialization
+beanName:foxProxy调用postProcessBeforeInstantiation
+返回动态代理beanName:foxProxy调用postProcessAfterInitialization
+beanName:bat.ke.qq.com.bean.Fox调用postProcessBeforeInstantiation
+beanName:bat.ke.qq.com.bean.Fox调用postProcessAfterInstantiation
+beanName:bat.ke.qq.com.bean.Fox调用postProcessBeforeInitialization
+beanName:bat.ke.qq.com.bean.Fox调用postProcessAfterInitialization
+beanName:cat调用postProcessBeforeInstantiation
+beanName:cat调用postProcessAfterInstantiation
+beanName:cat调用postProcessBeforeInitialization
+beanName:cat调用postProcessAfterInitialization
+beanName:tiger调用postProcessBeforeInstantiation
+beanName:tiger调用postProcessAfterInstantiation
+beanName:tiger调用postProcessBeforeInitialization
+beanName:tiger调用postProcessAfterInitialization
+beanName:fox调用postProcessBeforeInstantiation
+beanName:myService调用postProcessBeforeInstantiation
+beanName:myService调用postProcessAfterInstantiation
+beanName:myService调用postProcessBeforeInitialization
+beanName:myService调用postProcessAfterInitialization
+bat.ke.qq.com.bean.Cat@55a0a818=== Fox(Cat cat, MyService myService) =====
+beanName:fox调用postProcessAfterInstantiation
+beanName:fox调用postProcessBeforeInitialization
+beanName:fox调用postProcessAfterInitialization
+beanName:userService调用postProcessBeforeInstantiation
+bat.ke.qq.com.service.MyService@1065e832
+=====UserService======
+beanName:userService调用postProcessAfterInstantiation
+beanName:userService调用postProcessBeforeInitialization
+beanName:userService调用postProcessAfterInitialization
+beanName:fox2调用postProcessBeforeInstantiation
+beanName:fox2调用postProcessAfterInstantiation
+beanName:fox2调用postProcessBeforeInitialization
+beanName:fox2调用postProcessAfterInitialization
+beanName:fox22调用postProcessBeforeInstantiation
+beanName:fox22调用postProcessAfterInstantiation
+beanName:fox22调用postProcessBeforeInitialization
+beanName:fox22调用postProcessAfterInitialization
+beanName:fox333调用postProcessBeforeInstantiation
+beanName:fox333调用postProcessAfterInstantiation
+beanName:fox333调用postProcessBeforeInitialization
+beanName:fox333调用postProcessAfterInitialization
+beanName:myFactoryBean调用postProcessAfterInitialization
+java.lang.Object@53f9c3f2
+bat.ke.qq.com.bean.User@2fb92d59
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
