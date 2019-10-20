@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * http://bat.ke.qq.com
  * 往期视频加群:516212256 暗号:6
  */
-@Component
+//@Component
 public class MyFactoryBean implements FactoryBean {
 	@Override
 	public Object getObject() throws Exception {

@@ -34,8 +34,8 @@ public class IOCTest {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 
 		// 为什么加&符号返回的是原生的
-//		System.out.println(context.getBean("myFactoryBean"));// user   getObject()
-		System.out.println(context.getBean("&myFactoryBean"));// MyFactoryBean@3b2da18f
+	//	System.out.println(context.getBean("myFactoryBean"));// user   getObject()
+		//System.out.println(context.getBean("&myFactoryBean"));// MyFactoryBean@3b2da18f
 
 		//((ClassPathXmlApplicationContext) context).close();
 
@@ -50,7 +50,7 @@ public class IOCTest {
 
 		System.out.println(context.getBean("appConfig"));
 
-		context.getBean("fox");
+		//context.getBean("fox");
 
 		context.close();
 

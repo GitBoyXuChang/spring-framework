@@ -25,8 +25,8 @@ public class IOCTest {
 		AnnotationConfigApplicationContext context =
 				new AnnotationConfigApplicationContext(AppConfig.class);
 
-//		System.out.println(context.getBean("user"));
-		System.out.println(context.getBean("a"));
+		System.out.println(context.getBean("user"));
+		//System.out.println(context.getBean("a"));
 
 		// 通过容器获取到beanFactory  即是工厂，又是注册器
 		DefaultListableBeanFactory factory = context.getDefaultListableBeanFactory();

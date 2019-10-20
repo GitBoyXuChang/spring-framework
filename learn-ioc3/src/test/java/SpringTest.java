@@ -26,8 +26,7 @@ public class SpringTest {
 		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		//System.out.println(context.getBean("myFactoryBean")); //getObject
 		//System.out.println(context.getBean("&myFactoryBean")); //myFactoryBean
-		System.out.println(context.getBean("myFactoryBean"));
-		System.out.println(context.getBean("user"));
+		System.out.println(context.getBean("foxProxy"));
 
 //
 ////		// 拿到工厂
