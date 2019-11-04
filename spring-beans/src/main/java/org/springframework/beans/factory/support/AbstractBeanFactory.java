@@ -1649,13 +1649,13 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
-	 * Get the object for the given bean instance, either the bean
-	 * instance itself or its created object in case of a FactoryBean.
-	 * @param beanInstance the shared bean instance
-	 * @param name name that may include factory dereference prefix
-	 * @param beanName the canonical bean name
-	 * @param mbd the merged bean definition
-	 * @return the object to expose for the bean
+	 *获取给定bean实例的对象，可以是bean
+	 *实例本身或它创建的对象(如FactoryBean)。
+	 * @param beanInstance 共享bean实例
+	 * @param name 可能包含工厂引用前缀的名称
+	 * @param beanName 是规范的bean名
+	 * @param mbd 合并的bean定义
+	 * @返回要为bean公开的对象
 	 */
 	protected Object getObjectForBeanInstance(
 			Object beanInstance, String name, String beanName, @Nullable RootBeanDefinition mbd) {
@@ -1670,9 +1670,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			}
 		}
 
-		// Now we have the bean instance, which may be a normal bean or a FactoryBean.
-		// If it's a FactoryBean, we use it to create a bean instance, unless the
-		// caller actually wants a reference to the factory.
+		//现在我们有了bean实例，它可以是一个普通的bean，也可以是一个FactoryBean。
+		//如果它是一个FactoryBean，我们使用它来创建一个bean实例，除非呼叫者实际上想要一个工厂的参考。
 		//  涉及FactoryBean的判断  直接返回普通bean的条件
 		if (!(beanInstance instanceof FactoryBean) || BeanFactoryUtils.isFactoryDereference(name)) {
 			return beanInstance;

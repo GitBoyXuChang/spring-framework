@@ -413,6 +413,15 @@ import org.springframework.stereotype.Component;
  * @see ConfigurationClassPostProcessor
  * @see org.springframework.core.env.Environment
  * @see org.springframework.test.context.ContextConfiguration
+ *
+ */
+
+/**
+ * 配置 @Configuration和不配置的区别？ 不配置@Configuration：
+ * 当内部method bean发⽣彼此依赖的时候会导致多例
+ * @Configuration：
+ * 1.将@Configuration配置的Appconfig由普通类型转变为cglib代理类型
+ * 2.将AppConfig的beanDefinitioin属性赋值为full类型的（不配置的是lite）
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

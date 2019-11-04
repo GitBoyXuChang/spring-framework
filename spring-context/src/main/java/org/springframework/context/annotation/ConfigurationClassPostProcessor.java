@@ -66,17 +66,17 @@ import org.springframework.util.ClassUtils;
 import static org.springframework.context.annotation.AnnotationConfigUtils.CONFIGURATION_BEAN_NAME_GENERATOR;
 
 /**
- * {@link BeanFactoryPostProcessor} used for bootstrapping processing of
- * {@link Configuration @Configuration} classes.
+ * {@link BeanFactoryPostProcessor}用于引导处理
+ * {@link Configuration @Configuration}类。
  *
- * <p>Registered by default when using {@code <context:annotation-config/>} or
- * {@code <context:component-scan/>}. Otherwise, may be declared manually as
- * with any other BeanFactoryPostProcessor.
+ * <p>默认注册时使用{@code <context: annotated -config/>} or
+ * {@code <上下文:component-scan / >}。否则，可以手动声明为
+ *使用任何其他BeanFactoryPostProcessor。
  *
- * <p>This post processor is priority-ordered as it is important that any
- * {@link Bean} methods declared in {@code @Configuration} classes have
- * their corresponding bean definitions registered before any other
- * {@link BeanFactoryPostProcessor} executes.
+ * <p>此后处理程序是优先顺序，因为它是重要的任何
+ 在{@code @Configuration}类中声明的{@link Bean}方法
+ *它们对应的bean定义在任何其他bean之前注册
+ *执行{@link BeanFactoryPostProcessor}。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -257,7 +257,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	}
 
 	/**
-	 * Build and validate a configuration model based on the registry of
+	 * 基于注册表构建和验证配置模型
 	 * {@link Configuration} classes.
 	 * 基于注册表构建和验证配置模型类
 	 */
@@ -287,7 +287,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			return;
 		}
 
-		// Sort by previously determined @Order value, if applicable
+		// 根据之前确定的@Order值排序(如果适用)
 		configCandidates.sort((bd1, bd2) -> {
 			int i1 = ConfigurationClassUtils.getOrder(bd1.getBeanDefinition());
 			int i2 = ConfigurationClassUtils.getOrder(bd2.getBeanDefinition());
@@ -376,9 +376,9 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	}
 
 	/**
-	 * Post-processes a BeanFactory in search of Configuration class BeanDefinitions;
-	 * any candidates are then enhanced by a {@link ConfigurationClassEnhancer}.
-	 * Candidate status is determined by BeanDefinition attribute metadata.
+	 * 对一个BeanFactory进行后处理，以查找配置类beandefinition;
+	 * 任何候选项都会被{@link ConfigurationClassEnhancer}增强。
+	 * 候选状态由BeanDefinition属性元数据决定。
 	 * @see ConfigurationClassEnhancer
 	 */
 	public void enhanceConfigurationClasses(ConfigurableListableBeanFactory beanFactory) {
