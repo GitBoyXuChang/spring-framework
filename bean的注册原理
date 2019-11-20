@@ -1,0 +1,11 @@
+.bean的注册原理 思考：bean的属性是什么对象承载的？ bean是如何注册到容器中的？
+1 BeanDefinition （Bean定义） 承载bean的属性信息
+2 BeanDefinitionRegistry（Bean注册器） bean的id作为key注册 beanName
+3 AliasRegistry （别名注册器） bean的name作为key注册
+4 BeanDefinitionHolder 包装 BeanDefinition id name(多个)
+5 BeanDefinitionReader（Bean定义读取） 读取spring配置文件
+6 BeanDefinitionParser bean定义解析器 parser解析 schema
+7 ConfigurationClassParser 配置类解析器
+8 BeanMethod @bean修饰的方法bean
+9 ConfigurationClass 配置类 缓存BeanMethod到 beanMethods
+10 Beanfactory (bean工厂) 生产bean

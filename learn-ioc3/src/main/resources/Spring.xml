@@ -6,7 +6,7 @@
 	<bean  name="fox2" class="bat.ke.qq.com.bean.Fox" scope="singleton"/>
 	<bean  name="fox22" class="bat.ke.qq.com.bean.Fox"/>
 	<bean  name="fox333" class="bat.ke.qq.com.bean.Fox"/>
-
+	<bean  name="person" class="bat.ke.qq.com.bean.Person" scope="singleton"/>
 
 
 

@@ -1,11 +1,8 @@
-import bat.ke.qq.com.bean.Fox;
-import bat.ke.qq.com.bean.Monkey;
 import bat.ke.qq.com.config.AppConfig;
-import bat.ke.qq.com.proxy.FoxProxy;
-import bat.ke.qq.com.service.MyService;
 import org.junit.Test;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.support.*;
+import org.springframework.beans.factory.support.BeanDefinitionReader;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -14,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.Arrays;
 
 
-public class SpringTest {
+public class SpringTest2 {
 
 	@Test
 	public void test(){
@@ -48,23 +45,23 @@ public class SpringTest {
 
 	@Test
 	public void test2(){
-		//ApplicationContext context = new ClassPathXmlApplicationContext("Spring.xml");
-
+		ApplicationContext context = new ClassPathXmlApplicationContext("Spring.xml");
+		System.out.println(context.getBean("person"));
 
 		//创建一个简单注册器   map  key---beanDefiniton
 		//BeanDefinitionRegistry register = new SimpleBeanDefinitionRegistry();
 
 		//创建一个实现了注册器的工厂   即是一个工厂，又是一个注册器
-		BeanDefinitionRegistry register = new DefaultListableBeanFactory();
-	//创建bean定义读取器
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(register);
-
-		reader.loadBeanDefinitions("spring.xml");
-
-		System.out.println(Arrays.toString(register.getBeanDefinitionNames()));
-		System.out.println(register.getBeanDefinition("fox22"));
-
-		System.out.println(((DefaultListableBeanFactory) register).getBean("fox22"));
+//		BeanDefinitionRegistry register = new DefaultListableBeanFactory();
+//	//创建bean定义读取器
+//		BeanDefinitionReader reader = new XmlBeanDefinitionReader(register);
+//
+//		reader.loadBeanDefinitions("spring.xml");
+//
+//		System.out.println(Arrays.toString(register.getBeanDefinitionNames()));
+//		System.out.println(register.getBeanDefinition("fox22"));
+//
+//		System.out.println(((DefaultListableBeanFactory) register).getBean("fox22"));
 
 
 // 创建资源读取器

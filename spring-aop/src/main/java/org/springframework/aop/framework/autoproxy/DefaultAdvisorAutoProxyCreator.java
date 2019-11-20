@@ -36,6 +36,8 @@ import org.springframework.lang.Nullable;
  * @author Rob Harrop
  */
 @SuppressWarnings("serial")
+//根据Advisor的匹配机制自动创建代理，会对容器中所有的Advisor进行扫描，自动将这些切面应用到匹
+//配的Bean中，实现类DefaultAdvisorAutoProxyCreator
 public class DefaultAdvisorAutoProxyCreator extends AbstractAdvisorAutoProxyCreator implements BeanNameAware {
 
 	/** Separator between prefix and remainder of bean name. */

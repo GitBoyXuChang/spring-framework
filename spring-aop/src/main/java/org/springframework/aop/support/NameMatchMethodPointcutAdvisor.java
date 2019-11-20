@@ -30,6 +30,14 @@ import org.springframework.aop.Pointcut;
  * @see NameMatchMethodPointcut
  */
 @SuppressWarnings("serial")
+/**
+ * @Bean public NameMatchMethodPointcutAdvisor nameMatchMethodPointcutAdvisor(){
+ * NameMatchMethodPointcutAdvisor nameMatchMethodPointcutAdvisor= new NameMatchMethodPointcutAdvisor();
+ * // 方法级别
+ * nameMatchMethodPointcutAdvisor.setMappedNames("query*","find*");
+ * nameMatchMethodPointcutAdvisor.setAdvice(aopMethodInterceptor());
+ * return nameMatchMethodPointcutAdvisor; }
+ */
 public class NameMatchMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor {
 
 	private final NameMatchMethodPointcut pointcut = new NameMatchMethodPointcut();

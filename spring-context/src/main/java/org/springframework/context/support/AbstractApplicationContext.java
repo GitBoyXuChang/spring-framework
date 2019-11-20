@@ -510,7 +510,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	public Collection<ApplicationListener<?>> getApplicationListeners() {
 		return this.applicationListeners;
 	}
-
+	//启动容器
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
 		synchronized (this.startupShutdownMonitor) {
@@ -528,6 +528,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			// 2.如果存在beanFactory，先销毁单例bean，关闭beanFactory，再创建beanFactory
 			// 3.注册传入的spring的xml配置文件中配置的bean，注册到beanFactory
 			// 4.将beanFactory赋值给容器，返回beanFactory
+
+			//创建bean工厂
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.

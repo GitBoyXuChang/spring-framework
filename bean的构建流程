@@ -1,0 +1,27 @@
+四、bean的⽣命周期 bean的构建流程 https://www.processon.com/diagraming/5cf751c5e4b0da05395f587d 1
+#启动容器
+AbstractApplicationContext#refresh
+#创建bean工厂
+ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
+AbstractApplicationContext#finishBeanFactoryInitialization
+ConfigurableListableBeanFactory#preInstantiateSingletons
+AbstractBeanFactory#getBean(java.lang.String)
+AbstractBeanFactory#doGetBean
+# 先从单例对象池singletonObjects中获取，有，直接返回，
+没有去执行创建逻辑（涉及到循环依赖）
+Object sharedInstance = getSingleton(beanName); 181920 #标记Bean正要创建
+markBeanAsCreated(beanName); 22 final RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName); 23 #是不是抽象的
+checkMergedBeanDefinition(mbd, beanName, args); 25 #有没有依赖，先实例化依赖bean 配置了dependsOn属性
+String[] dependsOn = mbd.getDependsOn(); 272829 # 创建bean实例
+DefaultSingletonBeanRegistry#getSingleton 31 #通过工厂获取对象
+singletonObject = singletonFactory.getObject(); 333435 AbstractAutowireCapableBeanFactory#createBean 363738 # Instantiate the bean. 39 AbstractAutowireCapableBeanFactory#doCreateBean 40 # 包装的bean BeanWrapper 41 instanceWrapper=createBeanInstance(beanName, mbd, args);
+⾃定义初始化和销毁⽅法 bean的⽣命周期：bean创建-----初始化----销毁 的过程 可以⾃定义 bean初始化和销毁⽅法，容器在bean进⾏到当前⽣命周期的时候, 会调⽤⾃定义 的初始化和销毁⽅法 单例bean: 当容器关闭的时候,会调⽤destroy⽅法 多例bean: 容器只负责初始化,但不会管理bean, 容器关闭不会调⽤destroy⽅法
+⾃定义⽅式
+思考： 这三种⽅式的区别？执⾏的先后顺序 424344 AbstractAutowireCapableBeanFactory#createBeanInstance 454647 # 调用无参构造器
+AbstractAutowireCapableBeanFactory#instantiateBean 4950 #反射
+beanInstance = getInstantiationStrategy().instantiate(mbd, beanName, parent); 51525354 #填充bean 55 populateBean(beanName, mbd, instanceWrapper); 56 # 初始化bean 57 exposedObject = initializeBean(beanName, exposedObject, mbd); 585960 # factoryBean和beanFatory的区别
+AbstractBeanFactory#getObjectForBeanInstance 621 1. @Bean(initMethod="init", destroyMethod="destory") 2 等同于xml中配置 init-method destroy-method 34 2. implements InitializingBean, DisposableBean 56 3. @PostConstruct ,@PreDestroy //jdk的规范 ，可以配置多个方法
+public class Fox implements InitializingBean,DisposableBean { 2 public Fox(){ 3 System.out.println("Constructor===fox==="); 4 }
+调⽤顺序
+ 初始化 1. @PostConstruct 可以配置多个 在调⽤AbstractAutowireCapableBeanFactory#invokeInitMethods 之前的 applyBeanPostProcessorsBeforeInitialization⽅法中调⽤ 56 @PostConstruct 7 public void init(){ 8 System.out.println("@PostConstruct==init=="); 9 } 1011 @PostConstruct 12 public void init2(){ 13 System.out.println("@PostConstruct==init2=="); 14 } 1516 @Override 17 public void afterPropertiesSet() throws Exception { 18 System.out.println("InitializingBean==afterPropertiesSet=="); 19 } 2021 public void initxml(){ 22 System.out.println("xml==initxml=="); 23 } 2425 @PreDestroy 26 public void preDestroy(){ 27 System.out.println("@PreDestroy==preDestroy=="); 28 } 2930 @Override 31 public void destroy() throws Exception { 32 System.out.println("DisposableBean==destroy=="); 33 } 3435 public void destroyxml(){ 36 System.out.println("xml==destroyxml=="); 37 } 3839 } 40 AbstractAutowireCapableBeanFactory#applyBeanPostProcessorsBeforeInitializa tion 123 #CommonAnnotationBeanPostProcessor继承了初始化和销毁的BeanPostProcessor
+implements InitializingBean AbstractAutowireCapableBeanFactory#invokeInitMethods中 调⽤bat.ke.qq.com.bean.Fox#afterPropertiesSet 3. @Bean(initMethod="init "）或者xml配置init-method AbstractAutowireCapableBeanFactory#invokeInitMethods中调⽤ AbstractAutowireCapableBeanFactory#invokeCustomInitMethod  销毁⽅法 容器关闭，执⾏context.close()才会调⽤，在DisposableBeanAdapter#destroy 中调⽤ 1. @PreDestroy 2. implements DisposableBean 3. @Bean(initMethod="destroy"）或者xml配置destroy-method 五、循环依赖问题 1. 从缓存singletonObjects中获取A ，没有 2. 设置A的创建状态 singletonsCurrentlyInCreation beforeSingletonCreation(beanName); 3. 通过反射创建A对象 判断 当前是单例，且允许循环依赖⽽且当前bean处于创建状态 4. 缓存单例⼯⼚ singletonFactories 5. 填充A的属性 注⼊依赖 填充A的属性b, 会去singletonObjects中获取b,没有 beanName从 a 变成了b CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBeanPostProcessor 456 InitDestroyAnnotationBeanPostProcessor#postProcessBeforeInitialization 7 InitDestroyAnnotationBeanPostProcessor.LifecycleMetadata#invokeInitMethods 81 InitDestroyAnnotationBeanPostProcessor#postProcessBeforeDestruction InitDestroyAnnotationBeanPostProcessor.LifecycleMetadata#invokeDestroyMeth ods 21 DisposableBean#destroy 1 DisposableBeanAdapter#invokeCustomDestroyMethod
